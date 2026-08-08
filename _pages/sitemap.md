@@ -7,31 +7,41 @@ author_profile: true
 
 {% include base_path %}
 
-A list of all the posts and pages found on the site. For you robots out there, there is an [XML version]({{ base_path }}/sitemap.xml) available for digesting as well.
+A list of every page and entry on this site. There is also an
+[XML sitemap]({{ base_path }}/sitemap.xml) for search engines.
 
-<h2>Pages</h2>
+## Pages
+
+<ul>
 {% for post in site.pages %}
-  {% include archive-single.html %}
-{% endfor %}
-
-<h2>Posts</h2>
-{% for post in site.posts %}
-  {% include archive-single.html %}
-{% endfor %}
-
-{% capture written_label %}'None'{% endcapture %}
-
-{% for collection in site.collections %}
-{% unless collection.output == false or collection.label == "posts" %}
-  {% capture label %}{{ collection.label }}{% endcapture %}
-  {% if label != written_label %}
-  <h2>{{ label }}</h2>
-  {% capture written_label %}{{ label }}{% endcapture %}
+  {% if post.title and post.permalink %}
+    <li><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
   {% endif %}
-{% endunless %}
-{% for post in collection.docs %}
-  {% unless collection.output == false or collection.label == "posts" %}
-  {% include archive-single.html %}
-  {% endunless %}
 {% endfor %}
+</ul>
+
+## Publications
+
+<ul>
+{% for post in site.publications reversed %}
+  <li><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
+</ul>
+
+## Astrophotography
+
+<ul>
+{% assign astro_pages = site.astro | sort: "order" | reverse %}
+{% for post in astro_pages %}
+  <li><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
+
+## La Palma
+
+<ul>
+{% assign lp_pages = site.lapalma | sort: "order" | reverse %}
+{% for post in lp_pages %}
+  <li><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>

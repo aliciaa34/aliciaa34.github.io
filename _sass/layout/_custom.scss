@@ -1,0 +1,705 @@
+/* ==========================================================================
+   SITE-SPECIFIC STYLES
+   Publications, press, astrophotography and CV pages.
+   ========================================================================== */
+
+/* The dark skin maps --global-text-color-light onto a dark teal, which is close to
+   unreadable against the dark page background. Everything below uses --muted instead. */
+:root {
+  --muted: #5b6472;
+}
+
+html[data-theme="dark"] {
+  --muted: #9aa4b2;
+}
+
+/* The archive layout underlines every link inside it. These components carry their
+   own affordances (cards, pills, headings), so opt them out again. */
+.archive {
+  .astro-tile,
+  .pcar__all,
+  .pcar__more,
+  .press-item__link,
+  .pub-item__title a,
+  .pub-item__links a,
+  .astro-page__back a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .pub-item__title a:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Full-width variant of .archive, for pages with no author sidebar. */
+.archive--wide {
+  @include breakpoint($medium) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    float: none;
+  }
+
+  @include breakpoint($large) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    float: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Shared section headings
+   -------------------------------------------------------------------------- */
+
+.pub-heading,
+.press-heading {
+  margin: 2.2em 0 0.8em;
+  padding-bottom: 0.35em;
+  font-size: $type-size-4;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+.pub-intro,
+.astro-intro {
+  margin-bottom: 1.6em;
+  color: var(--muted);
+  font-size: $type-size-5;
+}
+
+/* --------------------------------------------------------------------------
+   Publications
+   -------------------------------------------------------------------------- */
+
+.pub-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pub;
+}
+
+.pub-item {
+  position: relative;
+  margin: 0 0 1.5em;
+  padding: 0 0 1.4em 2.4em;
+  border-bottom: 1px solid var(--global-border-color);
+  counter-increment: pub;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &::before {
+    content: counter(pub);
+    position: absolute;
+    top: 0.15em;
+    left: 0;
+    width: 1.7em;
+    color: var(--muted);
+    font-size: $type-size-6;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+}
+
+.pub-item__title {
+  font-size: $type-size-5;
+  font-weight: 700;
+  line-height: 1.35;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.pub-item__authors {
+  margin-top: 0.3em;
+  font-size: $type-size-6;
+  line-height: 1.5;
+  color: var(--muted);
+
+  b {
+    color: var(--global-text-color);
+  }
+}
+
+.pub-item__venue {
+  margin-top: 0.15em;
+  font-size: $type-size-6;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.pub-item__excerpt {
+  margin-top: 0.6em;
+  font-size: $type-size-6;
+  line-height: 1.6;
+}
+
+.pub-item__links {
+  margin-top: 0.6em;
+
+  a {
+    display: inline-block;
+    margin-right: 0.5em;
+    padding: 0.15em 0.7em;
+    font-size: $type-size-7;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--global-border-color);
+    border-radius: 2em;
+
+    &:hover {
+      text-decoration: none;
+      border-color: var(--global-link-color);
+    }
+  }
+}
+
+.cv-download {
+  margin: 0 0 1.6em;
+
+  a {
+    display: inline-block;
+    padding: 0.45em 1.1em;
+    font-size: $type-size-6;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid var(--global-link-color);
+    border-radius: 2em;
+    transition: $global-transition;
+
+    &:hover {
+      text-decoration: none;
+      background: var(--global-link-color);
+      color: var(--global-bg-color);
+    }
+  }
+}
+
+.cv-note {
+  color: var(--muted);
+  font-size: $type-size-7;
+}
+
+/* The CV page repeats the publication list in a compact form. */
+.cv-pub-list {
+  padding-left: 1.2em;
+  font-size: $type-size-6;
+  line-height: 1.6;
+
+  li {
+    margin-bottom: 0.7em;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Press
+   -------------------------------------------------------------------------- */
+
+.press-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.press-item {
+  margin-bottom: 0.7em;
+}
+
+.press-item__link {
+  display: flex;
+  gap: 0.9em;
+  padding: 0.9em 1em;
+  text-decoration: none;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  transition: $global-transition;
+
+  &:hover {
+    text-decoration: none;
+    border-color: var(--global-link-color);
+    transform: translateY(-1px);
+  }
+}
+
+.press-item__type {
+  flex: 0 0 auto;
+  width: 1.6em;
+  padding-top: 0.15em;
+  color: var(--muted);
+  text-align: center;
+}
+
+.press-item__body {
+  display: block;
+}
+
+.press-item__title {
+  display: block;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.press-item__meta {
+  display: block;
+  margin-top: 0.15em;
+  font-size: $type-size-6;
+  color: var(--muted);
+}
+
+.press-item__blurb {
+  display: block;
+  margin-top: 0.45em;
+  font-size: $type-size-6;
+  line-height: 1.55;
+  color: var(--global-text-color);
+}
+
+/* --------------------------------------------------------------------------
+   Photograph carousel - one picture at a time
+   -------------------------------------------------------------------------- */
+
+.pcar {
+  margin: 1.5em 0 2em;
+}
+
+.pcar__viewport {
+  position: relative;
+}
+
+/* Scroll snapping does the work: the track is a plain horizontal scroller, so a
+   trackpad swipe or a touch drag moves between photographs with no JavaScript. The
+   buttons and the counter are layered on top of that rather than replacing it. */
+.pcar__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--global-link-color);
+    outline-offset: 4px;
+  }
+}
+
+/* The slide is a <figure>, and the base theme makes figures flex containers, which
+   would shrink the caption to its content width and defeat centring it. */
+.pcar__slide {
+  display: block;
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  margin: 0;
+  padding: 0 0.25em;
+}
+
+.pcar__frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: min(64vh, 640px);
+  background: #0d1016;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* The base theme styles every figcaption in a small dark-teal serif, which is both
+   unreadable on the dark background and the wrong voice for a photograph title. */
+.pcar__caption {
+  padding: 0.9em 0.2em 0;
+  text-align: center;
+  font-family: $global-font-family;
+  font-size: 1rem;
+  color: var(--global-text-color);
+}
+
+.pcar__title {
+  display: block;
+  font-family: $header-font-family;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--global-text-color);
+}
+
+.pcar__meta {
+  display: block;
+  margin-top: 0.25em;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.pcar__more {
+  display: inline-block;
+  margin-top: 0.6em;
+  font-size: 0.85rem;
+  color: var(--global-link-color);
+}
+
+.pcar__nav {
+  position: absolute;
+  top: min(32vh, 320px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  transform: translateY(-50%);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: $global-transition;
+
+  &:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &--prev {
+    left: 0.6em;
+  }
+
+  &--next {
+    right: 0.6em;
+  }
+}
+
+.pcar__bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1em;
+  margin-top: 1.2em;
+  padding-top: 0.8em;
+  font-size: $type-size-6;
+  border-top: 1px solid var(--global-border-color);
+}
+
+.pcar__counter {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* On a narrow screen a fixed-height frame leaves a landscape photograph floating in a
+   deep letterbox, so match the frame to the shape most of them actually are. */
+@media (max-width: 600px) {
+  .pcar__frame {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  .pcar__title {
+    font-size: 1.1rem;
+  }
+
+  /* The buttons are positioned against the whole viewport, which includes the caption,
+     so centre them on the frame explicitly: it is 3:2 at roughly the full page width. */
+  .pcar__nav {
+    top: 33vw;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Astrophotography gallery
+   -------------------------------------------------------------------------- */
+
+/* Justified rows, in the manner of a contact sheet: every row is flushed to the full
+   width and each picture keeps its own aspect ratio. `flex-basis` and `flex-grow` are
+   set inline per photograph from its stored `aspect`, so wide frames take more of a
+   row than tall ones. The trailing filler soaks up the slack on the final row, which
+   would otherwise stretch its few pictures across the whole width. */
+.astro-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 1.5em 0 2em;
+}
+
+.astro-gallery__filler {
+  flex-grow: 1000000;
+}
+
+.astro-tile {
+  position: relative;
+  display: block;
+  height: 240px;
+  overflow: hidden;
+  background: #11141b;
+  text-decoration: none;
+  color: inherit;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+
+    img {
+      transform: scale(1.05);
+    }
+
+    .astro-tile__label {
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--global-link-color);
+    outline-offset: 2px;
+  }
+
+  @include breakpoint($medium) {
+    height: 220px;
+  }
+}
+
+/* Caption is held back until hover so the page reads as pictures first. */
+.astro-tile__label {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.2em 0.9em 0.7em;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  pointer-events: none;
+}
+
+.astro-tile__title {
+  display: block;
+  color: #fff;
+  font-size: $type-size-6;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.astro-tile__date {
+  display: block;
+  margin-top: 0.1em;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: $type-size-7;
+}
+
+/* Touch screens have no hover, so show the caption permanently instead of never. */
+@media (hover: none) {
+  .astro-tile__label {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .astro-gallery {
+    gap: 4px;
+  }
+
+  .astro-tile {
+    height: 160px;
+  }
+}
+
+.astro-empty {
+  padding: 2em 0;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Astrophotography single photograph
+   -------------------------------------------------------------------------- */
+
+.astro-single {
+  .page {
+    width: 100%;
+    padding-left: 0;
+    float: none;
+  }
+
+  .page__inner-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    float: none;
+  }
+}
+
+.astro-page__back {
+  margin-bottom: 1.2em;
+  font-size: $type-size-6;
+
+  a {
+    text-decoration: none;
+    color: var(--muted);
+
+    &:hover {
+      color: var(--global-link-color);
+    }
+  }
+}
+
+.astro-page__header {
+  margin-bottom: 1.2em;
+}
+
+.astro-page__subtitle {
+  margin: 0.2em 0 0;
+  font-size: $type-size-6;
+  color: var(--muted);
+
+  span + span::before {
+    content: " · ";
+  }
+}
+
+.astro-page__figure {
+  margin: 0 0 1.8em;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: $border-radius;
+  }
+
+  figcaption {
+    margin-top: 0.6em;
+    font-family: $caption-font-family;
+    font-size: $type-size-6;
+    color: var(--muted);
+  }
+}
+
+/* .page__content floats left in the base theme; the sections after it must clear it
+   or they overlap the story text. */
+.astro-page__story {
+  max-width: 42em;
+  line-height: 1.7;
+  float: none;
+  width: auto;
+}
+
+.astro-page__tech {
+  clear: both;
+  margin-top: 2em;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--global-border-color);
+
+  h2 {
+    margin: 0 0 0.7em;
+    font-size: $type-size-6;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.35em 1.2em;
+    margin: 0;
+    font-size: $type-size-6;
+  }
+
+  dt {
+    color: var(--muted);
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.astro-page__nav {
+  clear: both;
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  margin-top: 2.5em;
+  padding-top: 1.2em;
+  font-size: $type-size-6;
+  border-top: 1px solid var(--global-border-color);
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .astro-page__nav-next {
+    margin-left: auto;
+    text-align: right;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CV
+   -------------------------------------------------------------------------- */
+
+.archive {
+  /* The CV uses definition lists for degrees, skills and talks. */
+  dl {
+    margin: 0.2em 0 1.4em;
+  }
+
+  dd {
+    margin: 0 0 0.15em;
+    padding-left: 0;
+    font-size: $type-size-6;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  /* Award tables read better without the heavy default header. */
+  table {
+    font-size: $type-size-6;
+  }
+
+  th {
+    white-space: nowrap;
+  }
+
+  td:first-child {
+    white-space: nowrap;
+    color: var(--muted);
+  }
+}

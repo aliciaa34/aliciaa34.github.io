@@ -1,0 +1,55 @@
+{% comment %}
+  One-at-a-time photograph viewer. Built on CSS scroll snapping rather than a slider
+  library, so trackpad scrolling and touch swiping work natively and it still works with
+  JavaScript disabled (it degrades to a plain horizontal scroller).
+
+  Usage: {% include photo-carousel.html collection="astro" all_url="/astrophotography/all/" %}
+{% endcomment %}
+
+{% include base_path %}
+
+{% assign photos = site[include.collection] | sort: "order" | reverse %}
+
+{% if photos.size == 0 %}
+  <p class="astro-empty">No photographs yet.</p>
+{% else %}
+  <div class="pcar" data-pcar>
+    <div class="pcar__viewport">
+      <button class="pcar__nav pcar__nav--prev" type="button" data-pcar-prev aria-label="Previous photograph">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div class="pcar__track" data-pcar-track tabindex="0" role="group" aria-label="Photographs">
+        {% for photo in photos %}
+          <figure class="pcar__slide" data-pcar-slide>
+            <div class="pcar__frame">
+              <img src="{{ photo.image | prepend: base_path }}"
+                   alt="{{ photo.alt | default: photo.title | escape }}"
+                   {% if forloop.index > 2 %}loading="lazy"{% endif %}>
+            </div>
+            <figcaption class="pcar__caption">
+              <span class="pcar__title">{{ photo.title }}</span>
+              <span class="pcar__meta">
+                {% if photo.location %}{{ photo.location }}{% endif %}
+                {% if photo.location and photo.taken %} &middot; {% endif %}
+                {% if photo.taken %}{{ photo.taken | date: "%B %Y" }}{% endif %}
+              </span>
+              <a class="pcar__more" href="{{ base_path }}{{ photo.url }}">Story &amp; capture details</a>
+            </figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+
+      <button class="pcar__nav pcar__nav--next" type="button" data-pcar-next aria-label="Next photograph">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="pcar__bar">
+      <span class="pcar__counter" data-pcar-counter aria-live="polite">1 / {{ photos.size }}</span>
+      <a class="pcar__all" href="{{ base_path }}{{ include.all_url }}">View all {{ photos.size }} photographs</a>
+    </div>
+  </div>
+
+  <script src="{{ base_path }}/assets/js/photo-carousel.js"></script>
+{% endif %}

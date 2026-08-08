@@ -1,0 +1,116 @@
+# Press coverage, listed on /press/.
+#
+# To add an item, copy an existing block. Fields:
+#   title  - the headline, as published
+#   outlet - publication or channel name
+#   date   - free text, shown as-is (e.g. "May 2022", "2024")
+#   sort   - YYYY-MM-DD, used only for ordering within a group (newest first)
+#   url    - link to the article
+#   type   - article | video | profile  (controls the little label and icon)
+#   blurb  - one or two sentences of context, in your own words
+
+groups:
+  - id: research
+    title: "Research, scholarships & awards"
+    items:
+      - title: "Alicia Anderson &mdash; Gates Cambridge Scholar"
+        outlet: "Gates Cambridge"
+        date: "2022"
+        sort: "2022-10-01"
+        url: "https://www.gatescambridge.org/biography/18542/"
+        type: profile
+        blurb: "My scholar biography, covering the move from Lethbridge to Trinity College and the shift into instrumentation for exoplanet detection."
+
+      - title: "Alicia Anderson, 2024"
+        outlet: "Canadian Scholarship Fund UK"
+        date: "2024"
+        sort: "2024-06-01"
+        url: "https://www.canadianscholarshipfund.co.uk/project/alicia-anderson-2024/"
+        type: profile
+        blurb: "Recipient profile for the Mattan Family Scholarship 2024&ndash;2025, on the Terra Hunting Experiment and building HARPS3 for the Isaac Newton Telescope."
+
+      - title: "Connecting with School of Graduate Studies Silver Medal of Merit recipient Alicia Anderson"
+        outlet: "uLethbridge Stories"
+        date: "October 2022"
+        sort: "2022-10-13"
+        url: "https://stories.ulethbridge.ca/alicia-anderson-medal/"
+        type: article
+        blurb: "On receiving the Silver Medal of Merit for my MSc thesis on the dispersing component of a cryogenic post-dispersed polarizing FTS."
+
+      - title: "Gates Cambridge scholar reaching for the stars"
+        outlet: "Lethbridge Herald"
+        date: "May 2022"
+        sort: "2022-05-05"
+        url: "https://lethbridgeherald.com/news/lethbridge-news/2022/05/05/gates-cambridge-scholar-reaching-for-the-stars/"
+        type: article
+        blurb: "Local coverage of the Gates Cambridge award and the exoplanet research that followed it."
+
+      - title: "Graduate student Alicia Anderson earns world-renowned Gates Cambridge Scholarship to study at Trinity College"
+        outlet: "uLethbridge News"
+        date: "April 2022"
+        sort: "2022-04-28"
+        url: "https://www.ulethbridge.ca/unews/article/graduate-student-alicia-anderson-earns-world-renowned-gates-cambridge-scholarship-study"
+        type: article
+        blurb: "The University of Lethbridge announcement of the Gates Cambridge Scholarship."
+
+      - title: "Alicia Anderson, graduate student, physics &amp; astronomy"
+        outlet: "University of Lethbridge"
+        date: ""
+        sort: "2022-01-01"
+        url: "https://www.youtube.com/watch?v=7_QofHnXcTc"
+        type: video
+        blurb: "A short video about graduate research in the Astronomical Instrumentation Group."
+
+  - id: profiles
+    title: "Profiles & features"
+    items:
+      - title: "Alicia Anderson (BSc &rsquo;20)"
+        outlet: "uLethbridge Stories &mdash; Women in Science"
+        date: "February 2021"
+        sort: "2021-02-02"
+        url: "https://stories.ulethbridge.ca/wis-anderson/"
+        type: article
+        blurb: "Part of the Women in Science series &mdash; on working on space observatory instrumentation as an undergraduate, and on not setting limits for yourself."
+
+      - title: "With support and resilience, Anderson excels through adversity"
+        outlet: "uLethbridge Stories"
+        date: "June 2020"
+        sort: "2020-06-23"
+        url: "https://stories.ulethbridge.ca/while-learning-is-the-essence-of-a-post-secondary-experience-it-is-not-limited-to-what-is-found-in-textbooks-or-studied-in-the-lab/"
+        type: article
+        blurb: "A convocation feature on balancing a physics degree with five years of varsity hockey, and on what the years taught me outside the lecture theatre."
+
+  - id: hockey
+    title: "Hockey"
+    items:
+      - title: "Athlete of the Month: Goaltender Alicia Anderson leads the way for Pronghorns"
+        outlet: "Global News"
+        date: "November 2019"
+        sort: "2019-11-29"
+        url: "https://globalnews.ca/video/6237221/athlete-of-the-month-goaltender-alicia-anderson-leads-the-way-for-pronghorns"
+        type: video
+        blurb: "Global News Athlete of the Month feature, in a season that ended with the Canada West career records for games, minutes and saves by a goaltender."
+
+      - title: "Alicia Anderson: the best in Canada West"
+        outlet: "The Ice Garden"
+        date: "November 2017"
+        sort: "2017-11-17"
+        url: "https://www.theixsports.com/the-ice-garden/u-sports/alicia-anderson-the-best-in-canada-west-womens-hockey/"
+        type: article
+        blurb: "Mike Murphy on a stretch that led Canada West with a .960 save percentage and a 1.53 goals-against average."
+
+      - title: "Fifth-year physics student and Pronghorn athlete Alicia Anderson lives her life 100% in the moment"
+        outlet: "University of Lethbridge"
+        date: ""
+        sort: "2019-06-01"
+        url: "https://www.youtube.com/watch?v=-VgVYZuGl6Q&list=PL4RryxUZwqymCxdaUy98rvyY-LXUFs2Op&index=9"
+        type: video
+        blurb: "On life as a student athlete, between the physics building and the rink."
+
+      - title: "&ldquo;Fifth-year physics student Alicia Anderson is one heck of a goalie&rdquo;"
+        outlet: "uLethbridge Arts &amp; Science"
+        date: ""
+        sort: "2019-01-01"
+        url: "https://www.facebook.com/uLethbridgeArtSci/posts/fifth-year-physics-student-alicia-anderson-is-one-heck-of-a-goalie-life-as-a-stu/436272673741636/"
+        type: article
+        blurb: "A Faculty of Arts &amp; Science feature on life as a student athlete."
