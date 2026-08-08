@@ -9,6 +9,8 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "air" # Currently available options are "default", "air"
+default_color_scheme     : "dark" # "dark" or "light" - the scheme used before a visitor picks one
+                                  # with the sun/moon toggle in the navigation bar.
 title                    : "Alicia Anderson (PhD Student)"
 title_separator          : "-"
 name                     : &name "Alicia Anderson"
@@ -85,9 +87,11 @@ author:
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Peer-Reviewed Journal Articles'
   conferences:
-    title: 'Conference Papers'
+    title: 'Conference Proceedings'
+  theses:
+    title: 'Theses'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
@@ -188,6 +192,12 @@ exclude:
   - package.json*
   - Rakefile
   - README
+  - README.md
+  - ADDING-PHOTOS.md
+  - CONTRIBUTING.md
+  - docker-compose.yaml
+  - markdown_generator
+  - scripts
   - tmp
   - vendor
 keep_files:
@@ -219,18 +229,12 @@ kramdown:
 
 # These settings control the types of collections used by the template
 collections:
-  teaching:
-    output: true
-    permalink: /:collection/:path/
   publications:
     output: true
     permalink: /:collection/:path/
-  portfolio:
+  astro:
     output: true
-    permalink: /:collection/:path/
-  talks:
-    output: true
-    permalink: /:collection/:path/
+    permalink: /astrophotography/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -253,15 +257,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
-  - scope:
-      path: ""
-      type: teaching
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
   # _publications
   - scope:
       path: ""
@@ -269,25 +264,17 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
-      comments: true
-  # _portfolio
+      share: false
+      comments: false
+  # _astro
   - scope:
       path: ""
-      type: portfolio
+      type: astro
     values:
-      layout: single
-      author_profile: true
-      share: true
-      comment: true
-  # _talks
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
+      layout: astro-single
+      author_profile: false
+      share: false
+      comments: false
 
 
 # Sass/SCSS
@@ -306,8 +293,6 @@ timezone: Etc/UTC # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 # Plugins
 plugins:
   - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
@@ -315,8 +300,6 @@ plugins:
 # Mimic GitHub Pages with --safe
 whitelist:
   - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji

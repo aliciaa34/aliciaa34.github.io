@@ -1,0 +1,45 @@
+---
+layout: astro-archive
+title: "Astrophotography"
+permalink: /astrophotography/
+author_profile: false
+---
+
+{% include base_path %}
+
+<p class="astro-intro">
+  Photographs from observing runs and from the years spent around telescopes &mdash;
+  the sky, the domes, and the people who keep them running. Each picture has its own
+  page with the story behind it and the capture details.
+</p>
+
+{% assign photos = site.astro | sort: "date" | reverse %}
+
+{% if photos.size == 0 %}
+  <p class="astro-empty">No photographs yet.</p>
+{% else %}
+  <div class="astro-grid">
+    {% for photo in photos %}
+      <a class="astro-card" href="{{ base_path }}{{ photo.url }}">
+        <span class="astro-card__frame">
+          {% assign src = photo.thumb | default: photo.image %}
+          {% if src %}
+            <img src="{{ src | prepend: base_path }}"
+                 alt="{{ photo.alt | default: photo.title | escape }}"
+                 loading="lazy">
+          {% else %}
+            <span class="astro-card__placeholder" aria-hidden="true"></span>
+          {% endif %}
+        </span>
+        <span class="astro-card__caption">
+          <span class="astro-card__title">{{ photo.title }}</span>
+          <span class="astro-card__meta">
+            {% if photo.location %}{{ photo.location }}{% endif %}
+            {% if photo.location and photo.date %} &middot; {% endif %}
+            {% if photo.date %}{{ photo.date | date: "%B %Y" }}{% endif %}
+          </span>
+        </span>
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}

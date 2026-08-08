@@ -5,32 +5,40 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
+<p class="pub-intro">
+  Also indexed on
+  {% if site.author.googlescholar %}<a href="{{ site.author.googlescholar }}">Google Scholar</a>{% endif %}
+  {% if site.author.orcid %}&middot; <a href="{{ site.author.orcid }}">ORCID</a>{% endif %}
+  {% if site.author.arxiv %}&middot; <a href="{{ site.author.arxiv }}">arXiv</a>{% endif %}.
+</p>
 
-
-
+{% for category in site.publication_category %}
+  {% assign posts = site.publications | where: "category", category[0] | sort: "date" | reverse %}
+  {% if posts.size > 0 %}
+    <h2 class="pub-heading">{{ category[1].title }}</h2>
+    <ol class="pub-list">
+      {% for post in posts %}
+        <li class="pub-item">
+          <div class="pub-item__title">
+            {% if post.paperurl %}
+              <a href="{{ post.paperurl }}">{{ post.title }}</a>
+            {% else %}
+              {{ post.title }}
+            {% endif %}
+          </div>
+          <div class="pub-item__authors">{{ post.authors }}</div>
+          <div class="pub-item__venue">{{ post.venue }} &middot; {{ post.date | date: "%Y" }}</div>
+          {% if post.excerpt %}
+            <div class="pub-item__excerpt">{{ post.excerpt }}</div>
+          {% endif %}
+          <div class="pub-item__links">
+            <a href="{{ base_path }}{{ post.url }}">Details</a>
+            {% if post.paperurl %}<a href="{{ post.paperurl }}">DOI</a>{% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+{% endfor %}

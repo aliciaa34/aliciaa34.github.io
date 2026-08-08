@@ -1,0 +1,78 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main" class="astro-single">
+  <article class="page astro-page" itemscope itemtype="http://schema.org/Photograph">
+    <div class="page__inner-wrap">
+
+      <p class="astro-page__back"><a href="{{ base_path }}/astrophotography/">&larr; All photographs</a></p>
+
+      <header class="astro-page__header">
+        <h1 class="page__title" itemprop="headline">{{ page.title }}</h1>
+        <p class="astro-page__subtitle">
+          {% if page.target %}<span>{{ page.target }}</span>{% endif %}
+          {% if page.location %}<span>{{ page.location }}</span>{% endif %}
+          {% if page.date %}<span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%e %B %Y" }}</time></span>{% endif %}
+        </p>
+      </header>
+
+      {% if page.image %}
+        <figure class="astro-page__figure">
+          <img src="{{ page.image | prepend: base_path }}"
+               alt="{{ page.alt | default: page.title | escape }}"
+               loading="lazy">
+          {% if page.caption %}<figcaption>{{ page.caption }}</figcaption>{% endif %}
+        </figure>
+      {% endif %}
+
+      <section class="page__content astro-page__story" itemprop="text">
+        {{ content }}
+      </section>
+
+      {% assign has_tech = false %}
+      {% if page.telescope or page.camera or page.lens or page.mount or page.exposure or page.filters or page.processing or page.iso or page.aperture or page.focal_length %}
+        {% assign has_tech = true %}
+      {% endif %}
+      {% if has_tech %}
+        <section class="astro-page__tech">
+          <h2>Capture details</h2>
+          <dl>
+            {% if page.telescope %}<dt>Telescope</dt><dd>{{ page.telescope }}</dd>{% endif %}
+            {% if page.camera %}<dt>Camera</dt><dd>{{ page.camera }}</dd>{% endif %}
+            {% if page.lens %}<dt>Lens</dt><dd>{{ page.lens }}</dd>{% endif %}
+            {% if page.focal_length %}<dt>Focal length</dt><dd>{{ page.focal_length }}</dd>{% endif %}
+            {% if page.aperture %}<dt>Aperture</dt><dd>{{ page.aperture }}</dd>{% endif %}
+            {% if page.iso %}<dt>ISO</dt><dd>{{ page.iso }}</dd>{% endif %}
+            {% if page.mount %}<dt>Mount</dt><dd>{{ page.mount }}</dd>{% endif %}
+            {% if page.exposure %}<dt>Exposure</dt><dd>{{ page.exposure }}</dd>{% endif %}
+            {% if page.filters %}<dt>Filters</dt><dd>{{ page.filters }}</dd>{% endif %}
+            {% if page.processing %}<dt>Processing</dt><dd>{{ page.processing }}</dd>{% endif %}
+          </dl>
+        </section>
+      {% endif %}
+
+      {% assign astro = site.astro | sort: "date" | reverse %}
+      {% for item in astro %}
+        {% if item.url == page.url %}
+          {% assign idx = forloop.index0 %}
+        {% endif %}
+      {% endfor %}
+      {% assign prev_idx = idx | minus: 1 %}
+      {% assign next_idx = idx | plus: 1 %}
+      <nav class="astro-page__nav">
+        {% if idx > 0 %}
+          {% assign prev = astro[prev_idx] %}
+          <a class="astro-page__nav-prev" href="{{ base_path }}{{ prev.url }}">&larr; {{ prev.title }}</a>
+        {% endif %}
+        {% if next_idx < astro.size %}
+          {% assign next = astro[next_idx] %}
+          <a class="astro-page__nav-next" href="{{ base_path }}{{ next.url }}">{{ next.title }} &rarr;</a>
+        {% endif %}
+      </nav>
+
+    </div>
+  </article>
+</div>

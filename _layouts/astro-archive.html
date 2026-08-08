@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+{% comment %}
+  Like the `archive` layout, but full width: the astrophotography gallery has no
+  author sidebar, so it should not leave a sidebar-sized gap on the left.
+{% endcomment %}
+
+<div id="main" role="main">
+  <div class="archive archive--wide">
+    {% unless page.header.overlay_color or page.header.overlay_image %}
+      <h1 class="page__title">{{ page.title }}</h1>
+    {% endunless %}
+    {{ content }}
+  </div>
+</div>
