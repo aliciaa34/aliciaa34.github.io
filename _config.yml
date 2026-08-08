@@ -90,6 +90,8 @@ publication_category:
     title: 'Peer-Reviewed Journal Articles'
   conferences:
     title: 'Conference Proceedings'
+  forthcoming:
+    title: 'Forthcoming'
   theses:
     title: 'Theses'
 

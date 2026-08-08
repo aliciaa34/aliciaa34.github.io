@@ -13,7 +13,7 @@ author_profile: false
   page with the story behind it and the capture details.
 </p>
 
-{% assign photos = site.astro | sort: "date" | reverse %}
+{% assign photos = site.astro | sort: "order" | reverse %}
 
 {% if photos.size == 0 %}
   <p class="astro-empty">No photographs yet.</p>
@@ -35,8 +35,8 @@ author_profile: false
           <span class="astro-card__title">{{ photo.title }}</span>
           <span class="astro-card__meta">
             {% if photo.location %}{{ photo.location }}{% endif %}
-            {% if photo.location and photo.date %} &middot; {% endif %}
-            {% if photo.date %}{{ photo.date | date: "%B %Y" }}{% endif %}
+            {% if photo.location and photo.taken %} &middot; {% endif %}
+            {% if photo.taken %}{{ photo.taken | date: "%B %Y" }}{% endif %}
           </span>
         </span>
       </a>

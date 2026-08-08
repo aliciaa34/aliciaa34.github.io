@@ -1,0 +1,10 @@
+---
+title: 'Two dishes'
+order: 260
+location: 'Roque de los Muchachos Observatory, La Palma'
+image: /images/astro/two-dishes.jpg
+thumb: /images/astro/two-dishes-thumb.jpg
+alt: 'Both MAGIC telescopes in one frame, parked for the night, with the Milky Way stretched across the sky above them'
+---
+
+Both MAGIC telescopes in one frame, parked for the night, with the Milky Way stretched across the sky above them.

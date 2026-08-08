@@ -165,6 +165,32 @@ html[data-theme="dark"] {
   }
 }
 
+.cv-download {
+  margin: 0 0 1.6em;
+
+  a {
+    display: inline-block;
+    padding: 0.45em 1.1em;
+    font-size: $type-size-6;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid var(--global-link-color);
+    border-radius: 2em;
+    transition: $global-transition;
+
+    &:hover {
+      text-decoration: none;
+      background: var(--global-link-color);
+      color: var(--global-bg-color);
+    }
+  }
+}
+
+.cv-note {
+  color: var(--muted);
+  font-size: $type-size-7;
+}
+
 /* The CV page repeats the publication list in a compact form. */
 .cv-pub-list {
   padding-left: 1.2em;

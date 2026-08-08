@@ -15,7 +15,7 @@ layout: default
         <p class="astro-page__subtitle">
           {% if page.target %}<span>{{ page.target }}</span>{% endif %}
           {% if page.location %}<span>{{ page.location }}</span>{% endif %}
-          {% if page.date %}<span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%e %B %Y" }}</time></span>{% endif %}
+          {% if page.taken %}<span><time datetime="{{ page.taken | date: '%Y-%m-%d' }}">{{ page.taken | date: "%e %B %Y" }}</time></span>{% endif %}
         </p>
       </header>
 
@@ -54,7 +54,7 @@ layout: default
         </section>
       {% endif %}
 
-      {% assign astro = site.astro | sort: "date" | reverse %}
+      {% assign astro = site.astro | sort: "order" | reverse %}
       {% for item in astro %}
         {% if item.url == page.url %}
           {% assign idx = forloop.index0 %}

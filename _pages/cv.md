@@ -9,6 +9,12 @@ redirect_from:
 
 {% include base_path %}
 
+<p class="cv-download">
+  <a href="{{ base_path }}/files/alicia-anderson-cv.pdf">
+    <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Download as PDF
+  </a>
+</p>
+
 Astrophysics PhD candidate at the University of Cambridge specialising in high-resolution
 spectroscopy and astronomical instrumentation. My research focuses on mitigating instrumental
 and pipeline systematics in extreme-precision radial velocity measurements with HARPS3, the
@@ -152,6 +158,10 @@ Full list with abstracts and DOIs on the [publications page]({{ base_path }}/pub
 
 Conference presentations
 ======
+
+**SPIE Astronomical Telescopes + Instrumentation 2026** &mdash; Copenhagen, Denmark &middot; *5&ndash;10 July 2026*
+: *Oral:* "Design and evaluation of a white-LED ring for uniform CCD flat-field and contamination monitoring in HARPS3." <span class="cv-note">Conference 14154, paper 14154-27</span>
+: *Poster:* "Design and verification of the HARPS3 exposure meter: a dual-band photometer for improved photon-weighted barycentric correction." <span class="cv-note">Conference 14154, paper 14154-150</span>
 
 **Extremely Precise Radial Velocities 6** &mdash; Porto, Portugal &middot; *30 June &ndash; 4 July 2025*
 : *Poster:* "Testing the HARPS3 Data Reduction Pipeline with Synthetic Data to achieve EPRV."

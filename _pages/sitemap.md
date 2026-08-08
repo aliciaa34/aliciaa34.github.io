@@ -31,7 +31,8 @@ A list of every page and entry on this site. There is also an
 ## Astrophotography
 
 <ul>
-{% for post in site.astro reversed %}
+{% assign astro_pages = site.astro | sort: "order" | reverse %}
+{% for post in astro_pages %}
   <li><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>

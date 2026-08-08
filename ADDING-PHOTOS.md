@@ -34,24 +34,25 @@ magick images/astro/milky-way-dome.jpg -resize 800x800\> -quality 80 images/astr
 
 ## 2. Create the entry
 
-Copy one of the `EXAMPLE —` files in `_astro/` and edit it. The filename should start with
-the date, e.g. `_astro/2025-07-12-milky-way-dome.md`.
+Copy any existing file in `_astro/` and edit it. Name it after the photograph, e.g.
+`_astro/milky-way-dome.md` — the filename becomes the page URL.
 
 ```markdown
 ---
 title: "Milky Way over the dome"
-date: 2025-07-12
+order: 305
+taken: 2026-02-11
 target: "Milky Way core"
-location: "Isaac Newton Telescope, La Palma"
+location: "Roque de los Muchachos Observatory, La Palma"
 image: /images/astro/milky-way-dome.jpg
 thumb: /images/astro/milky-way-dome-thumb.jpg
 alt: "The Milky Way arching over a telescope dome at night"
 camera: "Canon EOS 6D"
-lens: "Samyang 14 mm f/2.8"
-focal_length: "14 mm"
-aperture: "f/2.8"
+lens: "Sigma 24mm f/1.4 DG HSM Art"
+focal_length: "24 mm"
+aperture: "f/1.4"
 iso: "3200"
-exposure: "20 × 25 s"
+exposure: "15 s"
 mount: "Static tripod"
 processing: "Stacked in Sequator, finished in Photoshop"
 ---
@@ -65,7 +66,8 @@ Whatever you want to say about the photograph goes here. Plain paragraphs, **bol
 | Field | Required | Notes |
 |---|---|---|
 | `title` | yes | Shown in the gallery and as the page heading |
-| `date` | yes | `YYYY-MM-DD`. Controls the ordering — newest first |
+| `order` | yes | A number. The gallery runs highest first, so give a new photo a number above every existing one. Nothing is displayed — it only sets the order |
+| `taken` | no | `YYYY-MM-DD`. Shown under the title and in the gallery. **Leave it out if you are not sure** — no date is better than a wrong one |
 | `image` | yes | Path from the site root, starting with `/images/astro/` |
 | `thumb` | no | Falls back to `image` if omitted |
 | `alt` | no | Description for screen readers; falls back to `title` |
@@ -82,7 +84,14 @@ git add images/astro _astro && git commit -m "Add Milky Way photograph" && git p
 
 GitHub rebuilds the site within a minute or two.
 
-## Housekeeping
+## About the existing entries
 
-Delete the three `_astro/*EXAMPLE*.md` files once you have real entries — they render as
-empty grey frames because they have no `image` set.
+The 29 photographs currently on the site came from `Pictures/astrophotography/favs`. The
+titles and the descriptions under them were written from the images themselves as a starting
+point — **please rewrite them in your own words**, they are placeholders.
+
+Only two of the files still had their EXIF data (`IMG_0926` and `IMG_0932`, from 11 February
+2026), so those two are the only entries with a date and camera settings filled in. The
+`*_edit.jpg` exports had their metadata stripped by whatever processed them, so if you want
+capture details on the rest you will need to add them by hand — or re-export from the raws
+with metadata preserved.
