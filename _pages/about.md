@@ -39,5 +39,6 @@ saves by a goaltender.
 
 * **[Publications]({{ base_path }}/publications/)** — journal articles, conference proceedings and my MSc thesis.
 * **[CV]({{ base_path }}/cv/)** — education, research and teaching experience, awards, talks.
-* **[Astrophotography]({{ base_path }}/astrophotography/)** — photographs from observing runs and telescope sites.
+* **[Astrophotography]({{ base_path }}/astrophotography/)** — the night sky over Roque de los Muchachos.
+* **[La Palma]({{ base_path }}/la-palma/)** — the same ridge in daylight, and the sun going down into the cloud.
 * **[Press]({{ base_path }}/press/)** — articles and features about my research and my hockey career.

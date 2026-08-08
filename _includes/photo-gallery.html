@@ -1,0 +1,31 @@
+{% comment %}
+  Justified-row gallery for a photograph collection.
+  Usage: {% include photo-gallery.html collection="astro" %}
+{% endcomment %}
+
+{% include base_path %}
+
+{% assign photos = site[include.collection] | sort: "order" | reverse %}
+
+{% if photos.size == 0 %}
+  <p class="astro-empty">No photographs yet.</p>
+{% else %}
+  <div class="astro-gallery">
+    {% for photo in photos %}
+      {% assign ar = photo.aspect | default: 1.5 %}
+      <a class="astro-tile"
+         href="{{ base_path }}{{ photo.url }}"
+         style="flex-grow: {{ ar | times: 100 | round }}; flex-basis: {{ ar | times: 240 | round }}px;">
+        {% assign src = photo.thumb | default: photo.image %}
+        <img src="{{ src | prepend: base_path }}"
+             alt="{{ photo.alt | default: photo.title | escape }}"
+             loading="lazy">
+        <span class="astro-tile__label">
+          <span class="astro-tile__title">{{ photo.title }}</span>
+          {% if photo.taken %}<span class="astro-tile__date">{{ photo.taken | date: "%B %Y" }}</span>{% endif %}
+        </span>
+      </a>
+    {% endfor %}
+    <span class="astro-gallery__filler"></span>
+  </div>
+{% endif %}

@@ -15,6 +15,7 @@ GitHub Pages rebuilds and republishes the site automatically on every push to `m
 | Publications | `_publications/*.md` — one file per paper; the page itself is `_pages/publications.html` |
 | CV | `_pages/cv.md` |
 | Astrophotography | `_astro/*.md` — one file per photograph; see [ADDING-PHOTOS.md](ADDING-PHOTOS.md) |
+| La Palma | `_lapalma/*.md` — daytime photographs, same format |
 | Press | `_data/press.yml` — a plain list; the page is `_pages/press.md` |
 | Navigation bar | `_data/navigation.yml` |
 | Site-wide settings, sidebar links | `_config.yml` |

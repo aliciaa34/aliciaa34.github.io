@@ -1,8 +1,15 @@
-# Adding a photograph to the astrophotography page
+# Adding a photograph
 
-Each photograph is one Markdown file in `_astro/` plus one image file in `images/astro/`.
-There is no database and nothing to rebuild by hand — pushing to `master` republishes the
-site.
+There are two photograph galleries, and they work identically:
+
+| Page | Entries live in | Images live in |
+|---|---|---|
+| [Astrophotography](https://aliciaa34.github.io/astrophotography/) — night sky | `_astro/` | `images/astro/` |
+| [La Palma](https://aliciaa34.github.io/la-palma/) — daytime and dusk | `_lapalma/` | `images/lapalma/` |
+
+Each photograph is one Markdown file plus one image file. There is no database and nothing
+to rebuild by hand — pushing to `master` republishes the site. Everything below says
+`astro`; swap in `lapalma` for the other gallery.
 
 ## 1. Export the image
 
@@ -86,12 +93,23 @@ GitHub rebuilds the site within a minute or two.
 
 ## About the existing entries
 
-The 29 photographs currently on the site came from `Pictures/astrophotography/favs`. The
-titles and the descriptions under them were written from the images themselves as a starting
-point — **please rewrite them in your own words**, they are placeholders.
+- **Astrophotography** — 29 photographs from `Pictures/astrophotography/favs`.
+- **La Palma** — 20 photographs selected from `Pictures/la palma/sunsets` (74) and
+  `Pictures/la palma/site pics` (4).
 
-Only two of the files still had their EXIF data (`IMG_0926` and `IMG_0932`, from 11 February
-2026), so those two are the only entries with a date and camera settings filled in. The
-`*_edit.jpg` exports had their metadata stripped by whatever processed them, so if you want
-capture details on the rest you will need to add them by hand — or re-export from the raws
-with metadata preserved.
+The titles and the descriptions under them were written from the images themselves as a
+starting point — **please rewrite them in your own words**, they are placeholders.
+
+**Nothing is named.** Descriptions say "one of the domes" and "a Cherenkov telescope"
+because the individual instruments were not identified with any confidence — the daytime
+shot shows CTA markings, so at least some of them are LST-1 rather than MAGIC, and the two
+are hard to tell apart at night. You will know which is which; please put the real names in.
+
+Dates and camera settings are only filled in where the file still had its EXIF data. The
+`*_edit.jpg` exports had their metadata stripped by whatever processed them, so most of the
+astrophotography entries have neither. Nothing was guessed — an entry with no `taken` field
+simply shows no date. If you re-export from the raws with metadata preserved, the capture
+details can be filled in automatically.
+
+The volcano, plants, waterfall and Playa de Nogales folders were left out, as were any
+pictures with other people in them.

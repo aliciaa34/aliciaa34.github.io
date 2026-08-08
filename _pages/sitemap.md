@@ -36,3 +36,12 @@ A list of every page and entry on this site. There is also an
   <li><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
+
+## La Palma
+
+<ul>
+{% assign lp_pages = site.lapalma | sort: "order" | reverse %}
+{% for post in lp_pages %}
+  <li><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>

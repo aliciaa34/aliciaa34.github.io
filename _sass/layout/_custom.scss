@@ -17,6 +17,8 @@ html[data-theme="dark"] {
    own affordances (cards, pills, headings), so opt them out again. */
 .archive {
   .astro-tile,
+  .pcar__all,
+  .pcar__more,
   .press-item__link,
   .pub-item__title a,
   .pub-item__links a,
@@ -263,6 +265,173 @@ html[data-theme="dark"] {
   font-size: $type-size-6;
   line-height: 1.55;
   color: var(--global-text-color);
+}
+
+/* --------------------------------------------------------------------------
+   Photograph carousel - one picture at a time
+   -------------------------------------------------------------------------- */
+
+.pcar {
+  margin: 1.5em 0 2em;
+}
+
+.pcar__viewport {
+  position: relative;
+}
+
+/* Scroll snapping does the work: the track is a plain horizontal scroller, so a
+   trackpad swipe or a touch drag moves between photographs with no JavaScript. The
+   buttons and the counter are layered on top of that rather than replacing it. */
+.pcar__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--global-link-color);
+    outline-offset: 4px;
+  }
+}
+
+/* The slide is a <figure>, and the base theme makes figures flex containers, which
+   would shrink the caption to its content width and defeat centring it. */
+.pcar__slide {
+  display: block;
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  margin: 0;
+  padding: 0 0.25em;
+}
+
+.pcar__frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: min(64vh, 640px);
+  background: #0d1016;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* The base theme styles every figcaption in a small dark-teal serif, which is both
+   unreadable on the dark background and the wrong voice for a photograph title. */
+.pcar__caption {
+  padding: 0.9em 0.2em 0;
+  text-align: center;
+  font-family: $global-font-family;
+  font-size: 1rem;
+  color: var(--global-text-color);
+}
+
+.pcar__title {
+  display: block;
+  font-family: $header-font-family;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--global-text-color);
+}
+
+.pcar__meta {
+  display: block;
+  margin-top: 0.25em;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.pcar__more {
+  display: inline-block;
+  margin-top: 0.6em;
+  font-size: 0.85rem;
+  color: var(--global-link-color);
+}
+
+.pcar__nav {
+  position: absolute;
+  top: min(32vh, 320px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  transform: translateY(-50%);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: $global-transition;
+
+  &:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &--prev {
+    left: 0.6em;
+  }
+
+  &--next {
+    right: 0.6em;
+  }
+}
+
+.pcar__bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1em;
+  margin-top: 1.2em;
+  padding-top: 0.8em;
+  font-size: $type-size-6;
+  border-top: 1px solid var(--global-border-color);
+}
+
+.pcar__counter {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* On a narrow screen a fixed-height frame leaves a landscape photograph floating in a
+   deep letterbox, so match the frame to the shape most of them actually are. */
+@media (max-width: 600px) {
+  .pcar__frame {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  .pcar__title {
+    font-size: 1.1rem;
+  }
+
+  /* The buttons are positioned against the whole viewport, which includes the caption,
+     so centre them on the frame explicitly: it is 3:2 at roughly the full page width. */
+  .pcar__nav {
+    top: 33vw;
+    width: 38px;
+    height: 38px;
+  }
 }
 
 /* --------------------------------------------------------------------------

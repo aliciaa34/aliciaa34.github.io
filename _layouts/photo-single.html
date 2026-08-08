@@ -8,7 +8,7 @@ layout: default
   <article class="page astro-page" itemscope itemtype="http://schema.org/Photograph">
     <div class="page__inner-wrap">
 
-      <p class="astro-page__back"><a href="{{ base_path }}/astrophotography/">&larr; All photographs</a></p>
+      <p class="astro-page__back"><a href="{{ base_path }}{{ page.gallery_url }}">&larr; {{ page.gallery_name | default: "All photographs" }}</a></p>
 
       <header class="astro-page__header">
         <h1 class="page__title" itemprop="headline">{{ page.title }}</h1>
@@ -54,7 +54,7 @@ layout: default
         </section>
       {% endif %}
 
-      {% assign astro = site.astro | sort: "order" | reverse %}
+      {% assign astro = site[page.collection] | sort: "order" | reverse %}
       {% for item in astro %}
         {% if item.url == page.url %}
           {% assign idx = forloop.index0 %}

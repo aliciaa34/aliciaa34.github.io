@@ -5,35 +5,11 @@ permalink: /astrophotography/
 author_profile: false
 ---
 
-{% include base_path %}
-
 <p class="astro-intro">
-  Photographs from observing runs and from the years spent around telescopes &mdash;
-  the sky, the domes, and the people who keep them running. Click any picture for the
-  story behind it and the capture details.
+  Nights at Roque de los Muchachos on La Palma &mdash; the Milky Way over the domes and the
+  Cherenkov telescopes, taken between shifts on HARPS3. Scroll or swipe through, or
+  <a href="/astrophotography/all/">see them all at once</a>. Daytime pictures from the same
+  site are on the <a href="/la-palma/">La Palma</a> page.
 </p>
 
-{% assign photos = site.astro | sort: "order" | reverse %}
-
-{% if photos.size == 0 %}
-  <p class="astro-empty">No photographs yet.</p>
-{% else %}
-  <div class="astro-gallery">
-    {% for photo in photos %}
-      {% assign ar = photo.aspect | default: 1.5 %}
-      <a class="astro-tile"
-         href="{{ base_path }}{{ photo.url }}"
-         style="flex-grow: {{ ar | times: 100 | round }}; flex-basis: {{ ar | times: 240 | round }}px;">
-        {% assign src = photo.thumb | default: photo.image %}
-        <img src="{{ src | prepend: base_path }}"
-             alt="{{ photo.alt | default: photo.title | escape }}"
-             loading="lazy">
-        <span class="astro-tile__label">
-          <span class="astro-tile__title">{{ photo.title }}</span>
-          {% if photo.taken %}<span class="astro-tile__date">{{ photo.taken | date: "%B %Y" }}</span>{% endif %}
-        </span>
-      </a>
-    {% endfor %}
-    <span class="astro-gallery__filler"></span>
-  </div>
-{% endif %}
+{% include photo-carousel.html collection="astro" all_url="/astrophotography/all/" %}

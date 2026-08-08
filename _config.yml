@@ -25,7 +25,7 @@ repository               : "aliciaa34/aliciaa34.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "20251008_120317.jpg"
+  avatar           : "avatar-la-palma.jpg"
   name             : "Alicia Anderson"
   pronouns         : "she/her"  
   bio              : "Astrophysics PhD Student at the University of Cambridge"
@@ -237,6 +237,9 @@ collections:
   astro:
     output: true
     permalink: /astrophotography/:path/
+  lapalma:
+    output: true
+    permalink: /la-palma/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -273,10 +276,23 @@ defaults:
       path: ""
       type: astro
     values:
-      layout: astro-single
+      layout: photo-single
       author_profile: false
       share: false
       comments: false
+      gallery_url: /astrophotography/all/
+      gallery_name: "All photographs"
+  # _lapalma
+  - scope:
+      path: ""
+      type: lapalma
+    values:
+      layout: photo-single
+      author_profile: false
+      share: false
+      comments: false
+      gallery_url: /la-palma/all/
+      gallery_name: "All La Palma photographs"
 
 
 # Sass/SCSS
