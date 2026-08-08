@@ -16,7 +16,7 @@ html[data-theme="dark"] {
 /* The archive layout underlines every link inside it. These components carry their
    own affordances (cards, pills, headings), so opt them out again. */
 .archive {
-  .astro-card,
+  .astro-tile,
   .press-item__link,
   .pub-item__title a,
   .pub-item__links a,
@@ -269,75 +269,104 @@ html[data-theme="dark"] {
    Astrophotography gallery
    -------------------------------------------------------------------------- */
 
-.astro-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.4em;
+/* Justified rows, in the manner of a contact sheet: every row is flushed to the full
+   width and each picture keeps its own aspect ratio. `flex-basis` and `flex-grow` are
+   set inline per photograph from its stored `aspect`, so wide frames take more of a
+   row than tall ones. The trailing filler soaks up the slack on the final row, which
+   would otherwise stretch its few pictures across the whole width. */
+.astro-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin: 1.5em 0 2em;
 }
 
-.astro-card {
+.astro-gallery__filler {
+  flex-grow: 1000000;
+}
+
+.astro-tile {
+  position: relative;
   display: block;
+  height: 240px;
+  overflow: hidden;
+  background: #11141b;
   text-decoration: none;
   color: inherit;
 
-  &:hover {
-    text-decoration: none;
-
-    .astro-card__frame img {
-      transform: scale(1.04);
-    }
-
-    .astro-card__title {
-      color: var(--global-link-color);
-    }
-  }
-}
-
-.astro-card__frame {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  background: #11141b;
-  border-radius: $border-radius;
-
   img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    vertical-align: bottom;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+
+    img {
+      transform: scale(1.05);
+    }
+
+    .astro-tile__label {
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--global-link-color);
+    outline-offset: 2px;
+  }
+
+  @include breakpoint($medium) {
+    height: 220px;
   }
 }
 
-/* Shown for entries that have no image yet. */
-.astro-card__placeholder {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.10), transparent 45%),
-    radial-gradient(circle at 72% 68%, rgba(255, 255, 255, 0.06), transparent 40%),
-    linear-gradient(160deg, #1a1f2b, #0c0f16);
+/* Caption is held back until hover so the page reads as pictures first. */
+.astro-tile__label {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.2em 0.9em 0.7em;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  pointer-events: none;
 }
 
-.astro-card__caption {
+.astro-tile__title {
   display: block;
-  margin-top: 0.55em;
-}
-
-.astro-card__title {
-  display: block;
+  color: #fff;
+  font-size: $type-size-6;
   font-weight: 700;
   line-height: 1.3;
-  transition: color 0.2s ease;
 }
 
-.astro-card__meta {
+.astro-tile__date {
   display: block;
   margin-top: 0.1em;
-  font-size: $type-size-6;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: $type-size-7;
+}
+
+/* Touch screens have no hover, so show the caption permanently instead of never. */
+@media (hover: none) {
+  .astro-tile__label {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .astro-gallery {
+    gap: 4px;
+  }
+
+  .astro-tile {
+    height: 160px;
+  }
 }
 
 .astro-empty {
